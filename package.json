@@ -1,0 +1,17 @@
+{
+  "name": "vscode-debug-logger",
+  "version": "0.0.1",
+  "description": "Easy logging for VS Code debug adapters",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -w -p ./"
+  },
+  "author": "Rob Lourens",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^7.0.4",
+    "typescript": "^2.1.5",
+    "vscode-debugadapter": "^1.16.0-pre.1",
+    "vscode-debugprotocol": "^1.16.0-pre.1"
+  }
+}

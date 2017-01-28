@@ -11,7 +11,7 @@ export enum LogLevel {
     Error = 2
 }
 
-export type ILogCallback = (msg: string, level: LogLevel) => void;
+export type ILogCallback = (outputEvent: OutputEvent) => void;
 
 interface ILogItem {
     msg: string;
@@ -37,7 +37,7 @@ export function error(msg: string, forceLog = true): void {
 /**
  * `log` adds a newline, this one doesn't
  */
-export function write(msg: string, forceLog = false, level = LogLevel.Log): void {
+function write(msg: string, forceLog = false, level = LogLevel.Log): void {
     // [null, undefined] => string
     msg = msg + '';
     if (_pendingLogQ) {
@@ -64,7 +64,7 @@ export function setMinLogLevel(logLevel: LogLevel): void {
     }
 }
 
-export function init(logCallback: ILogCallback, minLogLevel: LogLevel, logFilePath?: string, logToConsole?: boolean): void {
+export function init(logCallback: ILogCallback, logFilePath?: string, logToConsole?: boolean): void {
     _logger = new Logger(logCallback, logFilePath, logToConsole);
     if (logFilePath) {
         log(`Verbose logs are written to ${logFilePath}`);
@@ -105,10 +105,10 @@ class Logger {
         }
     }
 
-    constructor(logCallback: ILogCallback, logFilePath?: string, logToConsole?: boolean) {
+    constructor(logCallback: ILogCallback, logFilePath?: string, isServer?: boolean) {
         this._logCallback = logCallback;
         this._logFilePath = logFilePath;
-        this._logToConsole = logToConsole;
+        this._logToConsole = isServer;
 
         this.minLogLevel = LogLevel.Error;
     }
@@ -124,7 +124,7 @@ class Logger {
 
         if (this._logToConsole) {
             const logFn = level === LogLevel.Error ? console.error : console.log;
-            logFn(utils.trimLastNewline(msg));
+            logFn(trimLastNewline(msg));
         }
 
         // If an error, prepend with '[Error]'
@@ -148,7 +148,8 @@ class Logger {
         }
 
         if (this._logCallback) {
-            this._logCallback(msg, level);
+            const event = new OutputEvent(msg, level === LogLevel.Error ? 'stderr' : 'console');
+            this._logCallback(event);
         }
     }
 }

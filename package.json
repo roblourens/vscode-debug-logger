@@ -2,7 +2,8 @@
   "name": "vscode-debug-logger",
   "version": "0.0.1",
   "description": "Easy logging for VS Code debug adapters",
-  "main": "index.js",
+  "main": "out/logger.js",
+  "typings": "out/logger.d.ts",
   "scripts": {
     "build": "tsc -w -p ./"
   },

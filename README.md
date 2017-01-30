@@ -12,7 +12,7 @@ This library provides easy logging for VS Code debug adapters. It has a few feat
 ## Examples
 Consider this all temporary - someday I'll rewrite it to use the [winston](https://github.com/winstonjs/winston) logging library, or something else.
 
-```
+```typescript
 import * as logger from 'vscode-debug-logger';
 
 import { DebugProtocol } from 'vscode-debugprotocol';

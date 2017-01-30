@@ -37,7 +37,8 @@ class MyDebugSession extends DebugSession {
                     logger.LogLevel.Log :
                     logger.LogLevel.Error;
 
-        // Logs collected after 'init' will be flushed at this point
+        // Logs collected after 'init' will be flushed at this point.
+        // Verbose logs always go to the file. minLogLevel determines the level of log messages that go to the console.
         logger.setMinLogLevel(logLevel);
     }
 

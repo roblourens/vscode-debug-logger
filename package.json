@@ -1,6 +1,6 @@
 {
   "name": "vscode-debug-logger",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Easy logging for VS Code debug adapters",
   "main": "out/logger.js",
   "typings": "out/logger.d.ts",
@@ -11,8 +11,10 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^7.0.4",
-    "typescript": "^2.1.5",
-    "vscode-debugadapter": "^1.16.0-pre.1",
-    "vscode-debugprotocol": "^1.16.0-pre.1"
+    "typescript": "^2.1.5"
+  },
+  "dependencies": {
+    "vscode-debugadapter": "^1.16.0",
+    "vscode-debugprotocol": "^1.16.0"
   }
 }

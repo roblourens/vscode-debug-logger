@@ -1,6 +1,6 @@
 {
   "name": "vscode-debug-logger",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Easy logging for VS Code debug adapters",
   "main": "out/logger.js",
   "typings": "out/logger.d.ts",
